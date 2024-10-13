@@ -2,9 +2,9 @@ import "dotenv/config";
 import exp from "express";
 import { connectToMongo } from './config/DBconfig'
 import cookieParser from 'cookie-parser';
-import teacher from './routers/teacherRouter';
-import auth from './routers/authRouter';
-import student from './routers/studentRouter';
+import teacherRouter from './routers/teacherRouter'
+import authRouter from './routers/authRouter';
+import studentRouter from './routers/studentRouter';
 
 const app = exp();
 const PORT  = process.env.PORT
@@ -13,9 +13,9 @@ app.use(cookieParser())
 connectToMongo()
 
 // Routes
-app.use('/auth', auth)
-app.use('/teacher', teacher)
-app.use('/student',student )
+app.use('/auth', authRouter)
+app.use('/teacher', teacherRouter)
+app.use('/student',studentRouter )
 
 
 // Server running message
