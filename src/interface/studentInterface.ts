@@ -8,4 +8,5 @@ export interface Istudent extends Document {
     email: string;
     myclass:Types.ObjectId;
     information: IstudentInformtionDto[]; 
+    role: string;
   }

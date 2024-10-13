@@ -28,8 +28,7 @@ const studentSchema:Schema<Istudent> = new Schema<Istudent>({
     password: {
         type: String,
         required: [true,"Must fill in a field of password"],
-        maxLength: 10,
-        minLength: 4, 
+       
     },
     email: {
         type: String,
@@ -42,8 +41,14 @@ const studentSchema:Schema<Istudent> = new Schema<Istudent>({
     },
     information: [{
         type: IstudentInformtiondtoSchema,
-        required: true
-    }]
+        default: [] 
+    }],
+    
+    role: {
+        type: String,
+        required:[true,"Must fill in a field of role"],
+        enum: ['student', 'teacher']
+    }
 })
 
 const studentModel:mongoose.Model<Istudent> = mongoose.model<Istudent>("stusents", studentSchema)

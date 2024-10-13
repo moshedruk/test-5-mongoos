@@ -1,25 +1,29 @@
+
+import { Iteacher } from "../interface/teacherInterface";
 import classModel from "../models/classModel"
-import teacherModel from "../models/teacherModel"
+import teacherModel from "../models/teacherModel" 
+import bcrypt from 'bcrypt'
 
 
 
-export const CreateTeacher = async(newTeacher:any) => {
+
+export const CreateTeacher = async(newTeacher:Iteacher) => {
     try {        
-        const {name, password, email, nameClass} = newTeacher
-        const classAlredy =  classModel.findOne({ name: nameClass })
-        
-        if (!!classAlredy) {
-            throw new Error("Class already exists,Write another name")
-          }
-            
+        const {name, password, email, nameClass,role} = newTeacher
+        const hashPassword = await bcrypt.hash(password,10)              
         const dbnewTeacher = new teacherModel({
             name,
-            password,
+            password:hashPassword,
             email,
-            nameClass            
+            nameClass,      
+            role     
         })
+        const dbclass = new classModel({
+            name: nameClass,
+            teacher: dbnewTeacher._id            
+        })
+        await dbclass.save()        
         await dbnewTeacher.save()
-        
         return dbnewTeacher
     }catch (err) {
         console.error(err)

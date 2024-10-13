@@ -8,7 +8,7 @@ export const createTeacher = async (req: Request, res: Response) => {
         res.status(201).json(teacher);
       } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Internal Server Error' });         
+        res.status(500).json({ message: err });         
       }
 };
 

@@ -4,5 +4,6 @@ export interface Iteacher extends Document {
     name: string;
     password: string;
     email: string;    
-    nameClass: string;  
+    nameClass: string;
+    role: string;  
   }
