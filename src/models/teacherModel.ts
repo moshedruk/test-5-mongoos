@@ -13,8 +13,7 @@ const teacherSchema:Schema<Iteacher> = new Schema<Iteacher>({
     password: {
         type: String,
         required: [true,"Must fill in a field of password"],
-        maxLength: 10,
-        minLength: 4, 
+        
     },
     email: {
         type: String,
@@ -23,7 +22,12 @@ const teacherSchema:Schema<Iteacher> = new Schema<Iteacher>({
     nameClass: {
         type: String,
         required: [true,"Must fill in a field of name class"]
-    }  
+    },
+    role: {
+        type: String,
+        required: [true,"Must fill in a field of role"],
+        enum: ["teacher", "student"],
+    } 
 })
 
 const teacherModel:mongoose.Model<Iteacher> = mongoose.model<Iteacher>("teachers", teacherSchema)

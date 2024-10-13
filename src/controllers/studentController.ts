@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
+import { Createstudent } from "../services/studentService";
 
 
 export const createStudent = async (req: Request, res: Response) => {
-    try {       
-        
-      } catch (err) {        
+    try {
+        const newStudent = await Createstudent(req.body)
+        res.status(201).json(newStudent)        
+      } catch (err: any) {        
+        res.status(400).json({ message: err.message })
         
       }
 };
