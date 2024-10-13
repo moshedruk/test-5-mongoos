@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { Createstudent } from "../services/studentService";
+import { Createstudent, Getmyscore } from "../services/studentService";
+import studentModel from "../models/studentModel";
 
 
 export const createStudent = async (req: Request, res: Response) => {
@@ -11,19 +12,14 @@ export const createStudent = async (req: Request, res: Response) => {
         
       }
 };
-// Get all users
-export const getallStudents = async (req: Request, res: Response) => {
+// Get my score
+export const getmyscore = async (req: Request, res: Response) => {
     try {       
-        
-    } catch (err) {        
+        const myScore = await Getmyscore(req.params.id)
+        res.status(200).json(myScore)
+    } catch (err:any) {   
+        res.status(404).json({ message: err.message })     
       
     }
 };
 // Get a single user by ID
-export const getScore = async (req: Request, res: Response) => {
-    try {       
-        
-    } catch (err) {        
-      
-    }
-};

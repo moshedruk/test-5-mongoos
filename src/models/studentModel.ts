@@ -43,7 +43,11 @@ const studentSchema:Schema<Istudent> = new Schema<Istudent>({
         type: IstudentInformtiondtoSchema,
         default: [] 
     }],
-    
+    myTeacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'teachers',
+        required: [true,"Must fill in a field of name teacher"]
+    },    
     role: {
         type: String,
         required:[true,"Must fill in a field of role"],
@@ -51,6 +55,6 @@ const studentSchema:Schema<Istudent> = new Schema<Istudent>({
     }
 })
 
-const studentModel:mongoose.Model<Istudent> = mongoose.model<Istudent>("stusents", studentSchema)
+const studentModel:mongoose.Model<Istudent> = mongoose.model<Istudent>("students", studentSchema)
 
 export default studentModel;

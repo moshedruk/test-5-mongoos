@@ -5,14 +5,16 @@ import bcrypt from 'bcrypt'
 
 export const Createstudent = async(newstudent:Istudent) => {
     try {        
-        const {name, password, email, myclass,role} = newstudent
+        const {name, password, email, myclass,role ,myTeacher} = newstudent
         const hashPassword = await bcrypt.hash(password,10)              
         const dbnewstudent = new studentModel({
             name,
             password:hashPassword,
             email,
             myclass,      
-            role     
+            role,
+            myTeacher    
+
         })
         console.log(dbnewstudent);
         
@@ -23,6 +25,16 @@ export const Createstudent = async(newstudent:Istudent) => {
         await dbnewstudent.save()
         return dbnewstudent
     }catch (err) {
+        console.error(err)
+        throw err        
+    }
+}
+export const Getmyscore = async(ids:any) => {
+    try {        
+        const students = await studentModel.findOne({_id:ids })  
+        console.log(students);  
+        return students?.information
+    } catch (err) {
         console.error(err)
         throw err        
     }
