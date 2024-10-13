@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { createTeacher } from "../controllers/teacherController";
+import {  addscore, createTeacher, getAllMyStudents, getscorbyiId } from "../controllers/teacherController";
+
 
 const teacherRouter = Router();
 
@@ -7,7 +8,11 @@ const teacherRouter = Router();
 
 teacherRouter.post("/",createTeacher ) 
 
+teacherRouter.post("/:idt/:ids/addscore",addscore)
 
+teacherRouter.get("/:id",getAllMyStudents)
+
+teacherRouter.get("/app/:idt/:ids",getscorbyiId)
 
 
 export default teacherRouter;

@@ -7,6 +7,7 @@ export interface Istudent extends Document {
     password: string;
     email: string;
     myclass:Types.ObjectId;
+    myTeacher: Types.ObjectId;
     information: IstudentInformtionDto[]; 
     role: string;
   }
