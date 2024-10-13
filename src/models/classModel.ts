@@ -2,7 +2,11 @@
 import mongoose, { Schema, Types } from "mongoose";
 import { Iclass } from "../interface/classInterface";
 
-const classSchema:Schema<Iclass> = new Schema<Iclass>({            
+const classSchema:Schema<Iclass> = new Schema<Iclass>({  
+    name: {
+        type: String,
+        required: [true,"Must fill in a field of name"]
+    },          
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'teachers',         
