@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { createStudent } from "../controllers/studentController";
+import { createStudent, getmyscore } from "../controllers/studentController";
 
 const studentRouter = Router();
 
 studentRouter.post('/',createStudent)
-
+studentRouter.get('/',getmyscore)
 
 
 
